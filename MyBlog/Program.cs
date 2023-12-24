@@ -1,8 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using MyBlog.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<BlogContext>(o => o.UseSqlite(builder.Configuration.GetConnectionString("blog")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
